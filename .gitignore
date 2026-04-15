@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+*.so
+
+# Triton JIT cache — machine-specific, large
+.triton/
+~/.triton/
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Temp benchmark output
+benchmark/results/*.tmp
+benchmark/results/*.log
+
+# Environment
+.env
+*.env
+venv/
+.venv/
+
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
