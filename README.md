@@ -1,5 +1,7 @@
 # Triton Fused Kernels
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/shiva-sankeerth/triton-fused-kernels/blob/main/notebooks/colab_run.ipynb)
+
 Custom Triton GPU kernels for operations at the core of every modern LLM — benchmarked against unfused PyTorch baselines on a T4 GPU.
 
 RMSNorm runs **3.45× faster**. RMSNorm + INT8 quantization runs **5.30× faster**.
@@ -132,21 +134,17 @@ triton-fused-kernels/
 
 ---
 
-## Running on Colab
+## Reproducing the Benchmark
 
-1. Open `notebooks/colab_run.ipynb` in Google Colab
-2. Set runtime to **T4 GPU** (Runtime → Change runtime type)
-3. Add a GitHub PAT to Colab Secrets (🔑 sidebar) as `GITHUB_PAT`
-4. Run all 4 cells
+Click the **Open in Colab** badge above, set the runtime to **T4 GPU**, and run all cells. Total time: ~7 minutes.
 
 | Cell | What it does | Time |
 |---|---|---|
-| Cell 1 | Clone repo, install deps, verify GPU | ~1 min |
-| Cell 2 | Validate kernel correctness vs PyTorch | ~30 sec |
-| Cell 3 | Run full benchmark, save CSV | ~5 min |
-| Cell 4 | Commit and push results | ~10 sec |
+| 1 | Clone repo, install dependencies, verify GPU | ~1 min |
+| 2 | Correctness validation — Triton vs PyTorch numerics | ~30 sec |
+| 3 | Full benchmark sweep → results CSV in `benchmark/results/` | ~5 min |
 
-> Triton JIT-compiles kernels on first call. Expect 30–60 seconds of compilation at the start of Cell 3 — this is normal.
+> Triton JIT-compiles and autotunes kernels on first call. Expect 30–60 seconds of compilation at the start of Cell 3 — this is normal, not a hang.
 
 ---
 
