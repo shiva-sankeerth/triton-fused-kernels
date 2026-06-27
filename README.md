@@ -105,12 +105,16 @@ Two Triton kernel launches — avoids register pressure of a single over-fused k
 ### Use the Triton fused kernels when:
 - Running LLM inference where RMSNorm and SwiGLU are in the hot path (every forward pass)
 - Serving quantized models (INT8) where each token goes through RMSNorm + quantization before GEMM
-- Working at hidden sizes ≥ 1024 where the speedup is most consistent
+- Processing **≥ 2048 tokens** per batch — at this scale all three kernels consistently outperform PyTorch
 
 ### Use the PyTorch baselines when:
 - Prototyping or debugging — they are simpler to read and step through
 - Running on CPU (Triton requires CUDA)
-- Hidden size < 512 where kernel launch overhead dominates and the gap narrows
+- Processing very small batches (< 512 tokens) — at this scale the Triton kernel launch overhead exceeds the memory traffic savings, and PyTorch's elementwise kernels win
+
+### SwiGLU crossover point
+
+SwiGLU is the most sensitive to batch size. At `num_tokens=512, hidden_size=512` (262K elements) the grid has too few blocks to saturate the GPU and the fused kernel runs at **0.53× PyTorch speed**. The crossover is around 2048 tokens regardless of hidden size — above that, Triton consistently wins by 2–2.7×. This is expected behavior for any elementwise fused kernel: fusion pays off only when there is enough work to amortize launch overhead.
 
 ---
 
