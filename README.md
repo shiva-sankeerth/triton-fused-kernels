@@ -125,7 +125,7 @@ Figures are saved to `analysis/figures/`:
 ## Setup (local development, no GPU)
 
 ```bash
-git clone https://github.com/ShivaSankeerth/triton-fused-kernels.git
+git clone https://github.com/shiva-sankeerth/triton-fused-kernels.git
 cd triton-fused-kernels
 pip install -r requirements.txt
 ```
