@@ -1,6 +1,6 @@
 # Triton Fused Kernels vs PyTorch Baselines
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/shiva-sankeerth/triton-fused-kernels/blob/main/notebooks/colab_run.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ShivaSankeerth/triton-fused-kernels/blob/main/notebooks/colab_run.ipynb)
 
 This repository implements fused Triton GPU kernels for RMSNorm, SwiGLU, and RMSNorm + INT8 quantization — operations at the core of every modern LLM (LLaMA, Mistral, Qwen, Gemma) — and benchmarks them against unfused PyTorch baselines on a T4 GPU.
 
@@ -180,7 +180,7 @@ Click the **Open in Colab** badge above, set the runtime to **T4 GPU**, and run 
 To regenerate the plots locally after running:
 
 ```bash
-git clone https://github.com/shiva-sankeerth/triton-fused-kernels.git
+git clone https://github.com/ShivaSankeerth/triton-fused-kernels.git
 cd triton-fused-kernels
 pip install -r requirements.txt
 python analysis/plot.py
